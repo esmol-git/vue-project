@@ -13,7 +13,9 @@ class ApiClientClass {
     this.client =
       options.client ||
       Axios.create({
-        // baseURL: process.env.VUE_APP_API_URL ? process.env.VUE_APP_API_URL : "",
+        // baseURL: import.meta.url.VUE_APP_API_URL
+        //   ? import.meta.url.VUE_APP_API_URL
+        //   : "",
         baseURL: "https://jsonplaceholder.typicode.com",
 
         headers: this.defaultHeaders,
@@ -38,9 +40,15 @@ class ApiClientClass {
   }
 
   urlFormat(url, args) {
-    // return `${process.env.API_URL}/${url}${args.length > 0 ? '!'+args : ''}`
-    return `${url}${args.length > 0 ? "?" + args : ""}`;
+    // return `${process.env.API_URL}/${url}${args.length > 0 ? "!" + args : ""}`;
+    // return `${url}${args.length > 0 ? "?" + args : ""}`;
     // return `${url}/?format=json`
+    const argString = Object.keys(args)
+      .map((el) => {
+        return `${args[el]}`;
+      })
+      .join();
+    return `${url}${argString !== "" ? "/" + argString : ""}`;
   }
 }
 export default new Proxy(new ApiClientClass(), {
