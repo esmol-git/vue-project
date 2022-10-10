@@ -90,6 +90,7 @@ onMounted(() => {
       </button>
     </div>
     <p v-if="loading">Loading</p>
+    <p class="post__null" v-else-if="queryPost<=0">Нет записей</p>
     <div v-else v-auto-animate
       :class="[{'posts__inline':grid},{'posts__grid-2':grid2}, {'posts__grid-3':grid3}, {'posts__grid-4':grid4}]">
       <div class="post" v-for="post in queryPost" :key="post.id" @click="postId(post.id)">
@@ -171,6 +172,11 @@ button.active {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.post__null {
+  font-size: 50px;
+  color: blueviolet;
 }
 
 input[type="search"]::-webkit-search-cancel-button {
