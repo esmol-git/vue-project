@@ -1,13 +1,15 @@
 <script setup>
 import { useCounterStore } from "../stores/counter";
+import { useRouter, useRoute } from 'vue-router'
 import { useInfoStore } from "../stores/info";
 import { onMounted, ref, computed } from "vue";
-
+const router = useRouter()
 const info = useInfoStore();
-
+const loading = ref(info.loading)
 const postIdItem = ref(0)
 const postId = (id) => {
   postIdItem.value = id
+  router.push(`/post/${id}`)
 }
 const query = ref('')
 const buttonActive = ref(true)
@@ -17,7 +19,7 @@ const grid3 = ref(false)
 const grid4 = ref(true)
 const queryPost = computed(() => {
   let posts = info.info
-  return posts.filter((post) => post.id.toString().indexOf(query.value) !== -1) ||
+  return posts.filter((post) => post.title.toString().indexOf(query.value) !== -1) ||
     posts.filter((post) => post.title.indexOf(query.value) !== -1)
 })
 
@@ -57,6 +59,7 @@ const gridButtonClick = (e) => {
 }
 onMounted(() => {
   info.getInfo()
+  loading.value = false
 })
 </script>
 <template>
@@ -86,7 +89,8 @@ onMounted(() => {
         <span>Click button</span>
       </button>
     </div>
-    <div v-auto-animate
+    <p v-if="loading">Loading</p>
+    <div v-else v-auto-animate
       :class="[{'posts__inline':grid},{'posts__grid-2':grid2}, {'posts__grid-3':grid3}, {'posts__grid-4':grid4}]">
       <div class="post" v-for="post in queryPost" :key="post.id" @click="postId(post.id)">
         <p>{{post.id}}</p>
@@ -97,7 +101,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .buttons {
   display: flex;
   gap: 20px;

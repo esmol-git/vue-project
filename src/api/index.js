@@ -13,10 +13,10 @@ class ApiClientClass {
     this.client =
       options.client ||
       Axios.create({
-        // baseURL: import.meta.url.VUE_APP_API_URL
-        //   ? import.meta.url.VUE_APP_API_URL
-        //   : "",
-        baseURL: "https://jsonplaceholder.typicode.com",
+        baseURL: import.meta.env.VITE_APP_API_URL
+          ? import.meta.env.VITE_APP_API_URL
+          : "",
+        // baseURL: "https://jsonplaceholder.typicode.com",
 
         headers: this.defaultHeaders,
       });
@@ -40,9 +40,6 @@ class ApiClientClass {
   }
 
   urlFormat(url, args) {
-    // return `${process.env.API_URL}/${url}${args.length > 0 ? "!" + args : ""}`;
-    // return `${url}${args.length > 0 ? "?" + args : ""}`;
-    // return `${url}/?format=json`
     const argString = Object.keys(args)
       .map((el) => {
         return `${args[el]}`;
