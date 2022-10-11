@@ -6,7 +6,13 @@ import HelloWorld from "./components/HelloWorld.vue";
 <template>
   <div class="wrapper">
     <header>
-      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+      <img
+        alt="Vue logo"
+        class="logo"
+        src="@/assets/logo.svg"
+        width="125"
+        height="125"
+      />
 
       <div>
         <HelloWorld msg="You did it!" />
@@ -19,8 +25,6 @@ import HelloWorld from "./components/HelloWorld.vue";
     </header>
     <RouterView />
   </div>
-
-
 </template>
 
 <style scoped>

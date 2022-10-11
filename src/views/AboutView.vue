@@ -1,66 +1,82 @@
 <script setup>
-import { useCounterStore } from "../stores/counter";
-import { useRouter, useRoute } from 'vue-router'
+import { useRouter, useRoute } from "vue-router";
 import { useInfoStore } from "../stores/info";
 import { onMounted, ref, computed } from "vue";
-const router = useRouter()
+const router = useRouter();
 const info = useInfoStore();
-const loading = ref(info.loading)
-const postIdItem = ref(0)
+const loading = ref(info.loading);
+const postIdItem = ref(0);
 const postId = (id) => {
-  postIdItem.value = id
-  router.push(`/post/${id}`)
-}
-const query = ref('')
-const buttonActive = ref(true)
-const grid = ref(false)
-const grid2 = ref(false)
-const grid3 = ref(false)
-const grid4 = ref(true)
+  postIdItem.value = id;
+  router.push(`/post/${id}`);
+};
+const buttons = [
+  { id: 1, title: "button-1" },
+  { id: 2, title: "button-2" },
+  { id: 3, title: "button-3" },
+];
+const query = ref("");
+const buttonActive = ref(false);
+const grid = ref(false);
+const grid2 = ref(false);
+const grid3 = ref(false);
+const grid4 = ref(true);
 const queryPost = computed(() => {
-  let posts = info.info
-  return posts.filter((post) => post.title.toString().indexOf(query.value) !== -1) ||
+  let posts = info.info;
+  return (
+    posts.filter((post) => post.title.toString().indexOf(query.value) !== -1) ||
     posts.filter((post) => post.title.indexOf(query.value) !== -1)
-})
+  );
+});
 
 function sortAsc() {
-  let posts = info.info
-  return posts.sort()
+  let posts = info.info;
+  return posts.sort();
 }
 function sortDesc() {
-  let posts = info.info
-  return posts.sort().reverse()
+  let posts = info.info;
+  return posts.sort().reverse();
 }
 
 const resetButton = () => {
-  grid.value = false
-  grid2.value = false
-  grid3.value = false
-  grid4.value = false
-}
+  grid.value = false;
+  grid2.value = false;
+  grid3.value = false;
+  grid4.value = false;
+};
 const gridFour = () => {
-  resetButton()
-  grid4.value = true
-}
+  resetButton();
+  grid4.value = true;
+};
 const gridThree = () => {
-  resetButton()
-  grid3.value = true
-}
+  resetButton();
+  grid3.value = true;
+};
 const gridTwo = () => {
-  resetButton()
-  grid2.value = true
-}
+  resetButton();
+  grid2.value = true;
+};
 const gridOne = () => {
-  resetButton()
-  grid.value = true
-}
+  resetButton();
+  grid.value = true;
+};
 const gridButtonClick = (e) => {
-  console.log(e);
-}
+  let buttonValue = e.target.value;
+  buttons.forEach((el) => {
+    if (buttonValue == el.title) {
+      if (!e.target.classList.contains("active")) {
+        e.target.classList.add("active");
+      } else e.target.classList.remove("active");
+    }
+    console.log(el);
+  });
+
+  console.log(buttonValue);
+};
 onMounted(() => {
-  info.getInfo()
-  loading.value = false
-})
+  info.getInfo();
+  loading.value = false;
+});
 </script>
 <template>
   <div class="about">
@@ -68,35 +84,56 @@ onMounted(() => {
     <button @click="sortAsc">Sort A-Z ↑</button>
     <button @click="sortDesc">Sort Z-A ↓</button>
     <div class="posts__header"></div>
-    <strong class="post__id">Post ID: <span>{{postIdItem}}</span> </strong>
-    <input type="search" placeholder="Search post" v-model="query">
-    <p>{{query}}</p>
-    <span>Posts counter:{{queryPost.length}}</span>
+    <strong class="post__id"
+      >Post ID: <span>{{ postIdItem }}</span>
+    </strong>
+    <input type="search" placeholder="Search post" v-model="query" />
+    <p>{{ query }}</p>
+    <span>Posts counter:{{ queryPost.length }}</span>
     <div class="buttons">
-      <button :class="[{'active': grid4 && buttonActive}]" @click="gridFour">
-        <span>Grid-4 - {{grid4}}</span>
+      <button :class="[{ active: grid4 && buttonActive }]" @click="gridFour">
+        <span>Grid-4 - {{ grid4 }}</span>
       </button>
-      <button :class="[{'active': grid3 && buttonActive}]" @click="gridThree">
-        <span>Grid-3 - {{grid3}}</span>
+      <button :class="[{ active: grid3 && buttonActive }]" @click="gridThree">
+        <span>Grid-3 - {{ grid3 }}</span>
       </button>
-      <button :class="[{'active': grid2 && buttonActive}]" @click="gridTwo">
-        <span>Grid-2 - {{grid2}}</span>
+      <button :class="[{ active: grid2 && buttonActive }]" @click="gridTwo">
+        <span>Grid-2 - {{ grid2 }}</span>
       </button>
-      <button :class="[{'active': grid && buttonActive}]" @click="gridOne">
-        <span>Grid - {{grid}}</span>
+      <button :class="[{ active: grid && buttonActive }]" @click="gridOne">
+        <span>Grid - {{ grid }}</span>
       </button>
-      <button :class="[{'active': grid && buttonActive}]" @click="gridButtonClick(grid)">
-        <span>Click button</span>
+      <button
+        v-for="button in buttons"
+        :key="button.id"
+        :class="[{ active: buttonActive }]"
+        :value="button.title"
+        @click="gridButtonClick"
+      >
+        {{ button.title }}
       </button>
     </div>
     <p v-if="loading">Loading</p>
-    <p class="post__null" v-else-if="queryPost<=0">Нет записей</p>
-    <div v-else v-auto-animate
-      :class="[{'posts__inline':grid},{'posts__grid-2':grid2}, {'posts__grid-3':grid3}, {'posts__grid-4':grid4}]">
-      <div class="post" v-for="post in queryPost" :key="post.id" @click="postId(post.id)">
-        <p>{{post.id}}</p>
-        <h2 class="post__title">{{post.title}}</h2>
-        <p>{{post.body}}</p>
+    <p class="post__null" v-else-if="queryPost <= 0">Нет записей</p>
+    <div
+      v-else
+      v-auto-animate
+      :class="[
+        { posts__inline: grid },
+        { 'posts__grid-2': grid2 },
+        { 'posts__grid-3': grid3 },
+        { 'posts__grid-4': grid4 },
+      ]"
+    >
+      <div
+        class="post"
+        v-for="post in queryPost"
+        :key="post.id"
+        @click="postId(post.id)"
+      >
+        <p>{{ post.id }}</p>
+        <h2 class="post__title">{{ post.title }}</h2>
+        <p>{{ post.body }}</p>
       </div>
     </div>
   </div>
