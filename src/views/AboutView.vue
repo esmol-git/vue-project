@@ -135,9 +135,6 @@ onMounted(() => {
     <div class="buttons">
       <MyButton v-for="button in buttons" :key="button.id" @click="gridButtonClick($event)" :label="button.title"
         :activeButton="activeButton" />
-      <select style="width: 200px;" name="" id="">
-        <option v-for="option in select" :key="option.value" value="">{{option.title}}</option>
-      </select>
       <MySelect label="select" size="small" refer="status" :options="select" v-model:selected="selectedType"
         header-option="select" />
 
