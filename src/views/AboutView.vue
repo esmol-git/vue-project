@@ -23,10 +23,10 @@ const postId = (id) => {
   router.push(`/post/${id}`);
 };
 const buttons = [
-  { id: 1, title: "grid-4" },
-  { id: 2, title: "grid-3" },
-  { id: 3, title: "grid-2" },
-  { id: 4, title: "grid-1" },
+  { id: 1, title: "grid-4", icons: "icon-home-4-converted " },
+  { id: 2, title: "grid-3", icons: "icon-reports-converted" },
+  { id: 3, title: "grid-2", icons: "icon-home-4-converted" },
+  { id: 4, title: "grid-1", icons: "icon-mail-converted" },
 ];
 const select = [
   { value: "1", text: "vue" },
@@ -134,7 +134,7 @@ onMounted(() => {
     <span>Posts counter:{{ queryPost.length }}</span>
     <div class="buttons">
       <MyButton v-for="button in buttons" :key="button.id" @click="gridButtonClick($event)" :label="button.title"
-        :activeButton="activeButton" />
+        :activeButton="activeButton" :icon="true" :icons="button.icons" />
       <MySelect label="select" size="small" refer="status" :options="select" v-model:selected="selectedType"
         header-option="select" />
 
@@ -142,7 +142,7 @@ onMounted(() => {
     <p v-if="loading">Loading</p>
     <p class="post__null" v-else-if="queryPost <= 0">Нет записей</p>
     <div v-else v-auto-animate :class="[
-      { posts__inline: grid },
+      { 'posts__inline': grid },
       { 'posts__grid-2': grid2 },
       { 'posts__grid-3': grid3 },
       { 'posts__grid-4': grid4 },

@@ -11,7 +11,8 @@ watch(name, (currentValue, oldValue) => {
 });
 
 const getInfo = () => {
-  infos.getInfo();
+  if (infos.info.length <= 0)
+    infos.getInfo();
 };
 </script>
 
@@ -23,9 +24,9 @@ const getInfo = () => {
     <p>{{ baseUrl }}</p>
     <p>yyy</p>
     <i class="icon-home-4-converted home"></i>
-    <i class="icon-reports-converted home"></i>
-    <i class="icon-mail-converted home"></i>
-    <button @click="getInfo">get info</button>
+    <i :class="infos.info.length > 0 ? 'icon-reports-converted home':'icon-home-4-converted home__red home'"></i>
+    <i class="icon-mail-converted home" @click="infos.info=[]"></i>
+    <button @click="getInfo" :disabled="infos.info.length > 0">get info</button>
     <pre>{{ infos.info }}</pre>
   </main>
 </template>
@@ -35,6 +36,10 @@ const getInfo = () => {
   color: #fff;
   font-size: 32px;
   transition: all .3s linear;
+
+  &__red {
+    color: red;
+  }
 
   &:hover {
     color: red;

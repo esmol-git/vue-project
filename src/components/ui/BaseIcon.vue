@@ -20,8 +20,8 @@ const path = icons[props.name]
 </script>
 
 <template>
-    <svg :width="size" :height="size" :class="stroke ? 'icon__stroke' : 'icon__fill'" xmlns="http://www.w3.org/2000/svg"
-        v-html="path">
+    <svg viewBox="0 0 24 24" :width="size" :height="size" :class="stroke ? 'icon__stroke' : 'icon__fill'"
+        xmlns="http://www.w3.org/2000/svg" v-html="path">
 
     </svg>
 </template>

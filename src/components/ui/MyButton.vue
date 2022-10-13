@@ -22,7 +22,7 @@ const props = defineProps({
         required: false
     },
     icon: {
-        type: String,
+        type: Boolean,
         required: false
     },
     size: {
@@ -33,6 +33,9 @@ const props = defineProps({
         type: [Boolean, String],
         default: false
     },
+    icons: {
+        type: String
+    }
 })
 const emit = defineEmits(['click'])
 const clickOnButton = (title) => {
@@ -49,7 +52,7 @@ const isActive = computed(() => {
         :class="['btn', {'btn_second' : props.activeButton == props.label}, {'btn_rounded': rounded}, {'btn_outlined': outlined}, {'btn_icon': icon}, {'btn_large': size === 'large'}]"
         :disabled="disabled" @click="clickOnButton(props.label)">
         <span v-if="icon">
-            <!-- <font-awesome-icon :icon="`fa-regular fa-${icon}`" /> -->
+            <i :class="icons"></i>
         </span>
         <span v-else>{{label}}</span>
     </button>

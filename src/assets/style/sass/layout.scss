@@ -1,0 +1,45 @@
+:root {
+    --height-header: 80px;
+    --width-sidebar: 340px;
+    --width-sidebar-mini: 80px;
+}
+.site {
+    background-color: aliceblue;
+    min-height: 100vh;
+    &__header {
+        background-color: rgb(140, 184, 184);
+        padding: 20px 0;
+        height: var(--height-header);
+    }
+    &__main {
+        display: grid;
+        background-color: bisque;
+        height: calc(100vh - var(--height-header));
+
+        &--full {
+            grid-template-columns: var(--width-sidebar) auto;
+            width: 100%;
+        }
+        &--mini {
+            // width: var(--width-sidebar-mini);
+            grid-template-columns: var(--width-sidebar-mini) auto;
+        }
+    }
+    &__sidebar {
+        background-color: aquamarine;
+        transition: all 0.2s ease-in;
+
+        &--full {
+            width: var(--width-sidebar);
+        }
+        &--mini {
+            width: var(--width-sidebar-mini);
+        }
+    }
+    &__content {
+        transition: all 0.2s ease-in-out;
+        padding: 40px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
