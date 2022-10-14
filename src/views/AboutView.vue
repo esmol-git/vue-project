@@ -168,10 +168,10 @@ button {
   cursor: pointer;
 }
 
-button.active {
+/* button.active {
   background-color: red;
   color: aliceblue;
-}
+} */
 
 .about {
   min-height: 100vh;

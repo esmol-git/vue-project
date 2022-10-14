@@ -22,7 +22,6 @@ onMounted(async () => {
 <template>
   <div>
     <button @click="prevPage">Назад</button>
-    <h1>Post ID: {{ route.params.id }}</h1>
     <p v-if="loading">Loading</p>
     <div v-else class="post">
       <div class="post__header">

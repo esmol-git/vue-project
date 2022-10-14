@@ -9,17 +9,17 @@ const router = createRouter({
       children: [
         {
           path: "/home",
-          name: "home",
+          name: "Home",
           component: () => import("../views/HomeView.vue"),
         },
         {
           path: "/about",
-          name: "about",
+          name: "About",
           component: () => import("../views/AboutView.vue"),
         },
         {
           path: "/post/:id",
-          name: "postId",
+          name: "Post ID",
           component: () => import("../views/PostItem.vue"),
         },
       ],
