@@ -11,6 +11,8 @@ const props = defineProps({
 let sidebar = [
     { title: 'Home', to: '/home', icon: 'icon-home-4-converted', children: [] },
     { title: 'About', to: '/about', icon: 'icon-mail-converted', children: [] },
+    { title: 'Buttons', to: '/buttons', icon: 'icon-mail-converted', children: [] },
+    { title: 'Inputs', to: '/inputs', icon: 'icon-mail-converted', children: [] },
     { title: 'Auth', to: '/about', icon: 'icon-mail-converted', children: [{ title: 'Home', to: '/home', icon: 'icon-home-4-converted' }] },
 
 ]

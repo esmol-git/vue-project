@@ -61,7 +61,7 @@ const toggleDropdown = () => {
         border-radius: 12px;
         width: 100%;
         font-size: 18px;
-        font-weight: 700;
+        font-weight: 500;
         transition: all .3s ease-in;
         cursor: pointer;
 

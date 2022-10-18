@@ -18,6 +18,16 @@ const router = createRouter({
           component: () => import("../views/AboutView.vue"),
         },
         {
+          path: "/buttons",
+          name: "Buttons",
+          component: () => import("../views/ButtonsView.vue"),
+        },
+        {
+          path: "/inputs",
+          name: "Inputs",
+          component: () => import("../views/InputView.vue"),
+        },
+        {
           path: "/post/:id",
           name: "Post ID",
           component: () => import("../views/PostItem.vue"),

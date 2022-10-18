@@ -21,6 +21,14 @@ const props = defineProps({
         type: Boolean,
         required: false
     },
+    iconBefore: {
+        type: Boolean,
+        required: false
+    },
+    iconAfter: {
+        type: Boolean,
+        required: false
+    },
     icon: {
         type: Boolean,
         required: false
@@ -38,8 +46,8 @@ const props = defineProps({
     }
 })
 const emit = defineEmits(['click'])
-const clickOnButton = (title) => {
-    emit('click', title)
+const clickOnButton = () => {
+    emit('click', props.label)
 }
 const isActive = computed(() => {
     return props.activeButton ? "btn_primary" : "btn_second";
@@ -49,12 +57,12 @@ const isActive = computed(() => {
 
 <template>
     <button
-        :class="['btn', {'btn_second' : props.activeButton == props.label}, {'btn_rounded': rounded}, {'btn_outlined': outlined}, {'btn_icon': icon}, {'btn_large': size === 'large'}]"
+        :class="['btn', `btn_${color}`, {'btn_success' : props.activeButton == props.label}, {'btn_rounded': rounded}, {'btn_outlined': outlined}, {'btn_icon': icon}, {'btn_large': size === 'large'}, {'btn_icon-before': iconBefore}, {'btn_icon-after': iconAfter}]"
         :disabled="disabled" @click="clickOnButton(props.label)">
-        <span v-if="icon">
-            <i :class="icons"></i>
-        </span>
+        <i v-if="iconBefore" :class="icons"></i>
+        <i v-if="icon" :class="icons"></i>
         <span v-else>{{label}}</span>
+        <i v-if="iconAfter" :class="icons"></i>
     </button>
 </template>
 

@@ -17,7 +17,7 @@ const toggleSidebar = () => {
 <template>
     <div class="site">
         <div class="site__header">
-            <TheHeader />
+            <TheHeader @toggleSidebar="toggleSidebar" />
         </div>
         <div :class="['site__main', sidebar ? 'site__main--mini' : 'site__main--full']">
             <div v-auto-animate :class="['site__sidebar', sidebar ? 'site__sidebar--mini' : 'site__sidebar--full']">
@@ -27,7 +27,6 @@ const toggleSidebar = () => {
                 <div class="site__wrapper">
                     <div class="site__wrapper-content">
                         <ThePageHeader :id="route.params.id" />
-                        <button @click="toggleSidebar">Toggle</button>
                         <RouterView />
                     </div>
                 </div>

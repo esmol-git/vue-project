@@ -1,4 +1,12 @@
 @import "./base.scss";
-@import "./layout.scss";
-// @import "../select.scss";
+@import "./select.scss";
 @import "../css/normalize.css";
+@import "./layout.scss";
+@import "./variables.scss";
+@import "./fonts.scss";
+
+//ui
+@import "./ui/buttons.scss";
+
+//plugins
+@import "@vueform/multiselect/themes/default.css";
