@@ -1,6 +1,9 @@
 <script setup>
 import { computed } from 'vue'
 const props = defineProps({
+    width: {
+        type: String,
+    },
     label: {
         type: String,
         default: 'Button'
@@ -58,7 +61,7 @@ const isActive = computed(() => {
 <template>
     <button
         :class="['btn', `btn_${color}`, {'btn_success' : props.activeButton == props.label}, {'btn_rounded': rounded}, {'btn_outlined': outlined}, {'btn_icon': icon}, {'btn_large': size === 'large'}, {'btn_icon-before': iconBefore}, {'btn_icon-after': iconAfter}]"
-        :disabled="disabled" @click="clickOnButton(props.label)">
+        :disabled="disabled" @click="clickOnButton(props.label)" :style="{width: width}">
         <i v-if="iconBefore" :class="icons"></i>
         <i v-if="icon" :class="icons"></i>
         <span v-else>{{label}}</span>

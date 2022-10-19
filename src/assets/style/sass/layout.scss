@@ -55,7 +55,7 @@
             height: 100%;
             overflow-y: auto;
             overflow-x: hidden;
-            padding: 10px;
+            padding: 30px;
         }
         &::after,
         &::before {
@@ -82,6 +82,9 @@
     --scrollbarWidth: 12px;
     --scrollbarBorder: 3px solid var(--scrollbarBg);
     --scrollbarBorderRadius: calc(var(--scrollbarWidth) / 2);
+
+    --widthContainer: 1240px;
+    --gapGrid: 10px;
 }
 .site__wrapper-content {
     // z-index: 100;
@@ -100,4 +103,68 @@
     background-color: var(--scrollbarThumb);
     border-radius: var(--scrollbarBorderRadius);
     border: var(--scrollbarBorder);
+}
+
+.m-container {
+    max-width: var(--widthContainer);
+    background-color: antiquewhite;
+    padding: 0 15px;
+    margin: 0 auto;
+    &__full {
+        padding: 0;
+    }
+}
+.m-row {
+    display: flex;
+    // flex-wrap: wrap;
+    gap: var(--gapGrid);
+    background-color: aquamarine;
+}
+.m-col {
+    flex: 1 1 100%;
+    background-color: brown;
+}
+.m-col-2 {
+    flex: 1 1 calc(50% - var(--gapGrid) / 2);
+    background-color: blueviolet;
+}
+.m-col-3 {
+    flex: 1 1 calc(33.19% - var(--gapGrid) / 2);
+    background-color: rgb(95, 180, 219);
+}
+.m-col-4 {
+    flex: 0 0 calc(24.794% - var(--gapGrid) / 2);
+    background-color: rgb(153, 219, 147);
+}
+.m-col-5 {
+    flex: 0 0 calc(19.753% - var(--gapGrid) / 2);
+    background-color: rgb(224, 99, 214);
+}
+.m-col-6 {
+    flex: 0 0 calc(16.392% - var(--gapGrid) / 2);
+    background-color: rgb(139, 54, 68);
+}
+.m-col-7 {
+    flex: 0 0 calc(13.991% - var(--gapGrid) / 2);
+    background-color: rgb(226, 233, 126);
+}
+.m-col-8 {
+    flex: 0 0 calc(12.191% - var(--gapGrid) / 2);
+    background-color: rgb(219, 145, 33);
+}
+.m-col-9 {
+    flex: 0 0 calc(10.79% - var(--gapGrid) / 2);
+    background-color: rgb(68, 6, 53);
+}
+.m-col-10 {
+    flex: 0 0 calc(9.67% - var(--gapGrid) / 2);
+    background-color: rgb(201, 184, 196);
+}
+.m-col-11 {
+    flex: 0 0 calc(8.752% - var(--gapGrid) / 2);
+    background-color: rgb(8, 83, 61);
+}
+.m-col-12 {
+    flex: 0 0 calc(7.989% - var(--gapGrid) / 2);
+    background-color: rgb(245, 112, 3);
 }

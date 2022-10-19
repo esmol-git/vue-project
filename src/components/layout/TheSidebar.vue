@@ -9,11 +9,13 @@ const props = defineProps({
     }
 })
 let sidebar = [
-    { title: 'Home', to: '/home', icon: 'icon-home-4-converted', children: [] },
-    { title: 'About', to: '/about', icon: 'icon-mail-converted', children: [] },
-    { title: 'Buttons', to: '/buttons', icon: 'icon-mail-converted', children: [] },
-    { title: 'Inputs', to: '/inputs', icon: 'icon-mail-converted', children: [] },
-    { title: 'Auth', to: '/about', icon: 'icon-mail-converted', children: [{ title: 'Home', to: '/home', icon: 'icon-home-4-converted' }] },
+    { title: 'Home', to: '/home', icon: 'icon-home-1', children: [] },
+    { title: 'About', to: '/about', icon: 'icon-map', children: [] },
+    { title: 'Buttons', to: '/buttons', icon: 'icon-circle', children: [] },
+    { title: 'Inputs', to: '/inputs', icon: 'icon-input-field', children: [] },
+    { title: 'Icons', to: '/icons', icon: 'icon-face-happy', children: [] },
+    { title: 'Checkbox', to: '/checkbox', icon: 'icon-check', children: [] },
+    { title: 'Auth', to: '/about', icon: 'icon-lock', children: [{ title: 'Home', to: '/home', icon: 'icon-home-1' }] },
 
 ]
 

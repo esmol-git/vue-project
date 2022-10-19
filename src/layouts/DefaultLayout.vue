@@ -17,7 +17,7 @@ const toggleSidebar = () => {
 <template>
     <div class="site">
         <div class="site__header">
-            <TheHeader @toggleSidebar="toggleSidebar" />
+            <TheHeader @toggleSidebar="toggleSidebar" :isActive="sidebar" />
         </div>
         <div :class="['site__main', sidebar ? 'site__main--mini' : 'site__main--full']">
             <div v-auto-animate :class="['site__sidebar', sidebar ? 'site__sidebar--mini' : 'site__sidebar--full']">

@@ -28,6 +28,16 @@ const router = createRouter({
           component: () => import("../views/InputView.vue"),
         },
         {
+          path: "/icons",
+          name: "Icons",
+          component: () => import("../views/IconsView.vue"),
+        },
+        {
+          path: "/checkbox",
+          name: "Checkbox",
+          component: () => import("../views/CheckboxView.vue"),
+        },
+        {
           path: "/post/:id",
           name: "Post ID",
           component: () => import("../views/PostItem.vue"),

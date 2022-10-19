@@ -37,9 +37,10 @@ const updateValue = (e) => {
 
 <template>
     <div class="form-input" :style="{width: width}">
-        <input class="input-text" :type="type" :name="name" :id="name" :placeholder="placeholder" :value="value"
-            @input="updateValue">
-        <label :for="name" class="input-label">{{label}}</label>
+        <i v-if="error?.length > 0 " :class="['icon-home-4-converted',{'form-error-icon': error?.length > 0 }]"></i>
+        <input :class="['input-text', {'input-text-error': error?.length > 0 }]" :type="type" :name="name" :id="name"
+            :placeholder="placeholder" :value="value" @input="updateValue">
+        <label :for="name" :class="['input-label', {'input-label-error': error?.length > 0 }]">{{label}}</label>
         <TransitionGroup>
             <div class="form-error" v-for="element of error" :key="element.$uid">
                 <div class="form-error__message">{{element.$message}}</div>
@@ -56,12 +57,20 @@ const updateValue = (e) => {
     }
 
     &-error {
-        background: var(--danger);
         margin-top: 4px;
         border-radius: 7px;
         font-size: 13px;
         color: #fff;
         padding: 5px;
+        background-color: var(--danger);
+
+        &-icon {
+            position: absolute;
+            top: 12px;
+            right: 10px;
+            color: var(--danger);
+            z-index: 10;
+        }
     }
 }
 
@@ -76,7 +85,15 @@ const updateValue = (e) => {
         position: relative;
         z-index: 1;
 
+        &-error {
+            border-color: var(--danger);
+        }
+
+
+
         &:focus {
+            outline: var(--primary);
+
             &+.input-label {
                 z-index: 1;
                 opacity: 1;
@@ -103,6 +120,10 @@ const updateValue = (e) => {
         transition: .3s;
         font-size: 13px;
         color: var(--primary);
+
+        &-error {
+            color: var(--danger);
+        }
     }
 }
 

@@ -38,13 +38,12 @@ const toggleDropdown = () => {
     <div class="dropdown">
         <TheLinkSidebar :hideTitle="hideTitle" v-if="linkShow" :title="title" :link="to" :icon="icon" />
         <div v-else class="dropdown__title" @click="toggleDropdown">
-            <i class="icon-home-4-converted"></i>
+            <i :class="icon"></i>
             <span v-show="hideTitle">{{title}}1</span>
             <span v-show="hideTitle">+</span>
         </div>
         <div class="dropdown__list" v-show="hideList && hideTitle">
-            <TheLinkSidebar v-for="item in list" :key="item.title" :title="item.title" :link="item.to"
-                icon="icon-home-4-converted" />
+            <TheLinkSidebar v-for="item in list" :key="item.title" :title="item.title" :link="item.to" :icon="icon" />
         </div>
     </div>
 </template>
