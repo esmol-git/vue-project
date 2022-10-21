@@ -5,7 +5,7 @@ const props = defineProps({
         required: true
     },
     selectedTab: {
-        type: String,
+        type: [String, Number],
         required: false
     }
 })
@@ -17,8 +17,8 @@ const clickOnTab = (tabName) => {
 
 <template>
     <div class="tab-nav">
-        <span v-for="tab in names" :key="tab.name" :class="['tab-nav__item', {'selected': tab.name === selectedTab}]"
-            @click="clickOnTab(tab.name)">{{tab.label}}
+        <span v-for="tab in names" :key="tab.id" :class="['tab-nav__item', {'selected': tab.id === selectedTab}]"
+            @click="clickOnTab(tab.id)">{{tab.title}}
         </span>
     </div>
     <div class="tab-content">

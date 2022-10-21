@@ -3,6 +3,7 @@ import BaseIcon from '@/components/ui/BaseIcon.vue'
 import { onMounted, computed, ref, watch } from "vue";
 import Multiselect from '@vueform/multiselect'
 import { useInfoStore } from "../stores/info";
+import Clock from '../components/Clock.vue';
 const baseUrl = import.meta.env.VITE_APP_API_URL;
 const infos = useInfoStore();
 const name = ref("Jay");
@@ -30,10 +31,19 @@ const getInfo = () => {
   if (infos.info.length <= 0)
     infos.getInfo();
 };
+const inputValue = ref('')
+const countInput = ref('23')
 </script>
 
 <template>
   <main>
+    <textarea :maxlength="countInput" v-model="inputValue" name="" id="" cols="30" rows="10"></textarea>
+    <input :maxlength="countInput" type="text">
+    <p>{{inputValue.length}}/{{countInput}}</p>
+    <Clock />
+    <h1 class="font-sans text-7xl font-bold underline bg-red-300">
+      Hello world!
+    </h1>
     <button @click="selectClose">Select close</button>
     <Multiselect v-model="value" :options="options" mode="tags" placeholder="Select employees" track-by="name"
       label="name" :close-on-select="false" :searchable="true">

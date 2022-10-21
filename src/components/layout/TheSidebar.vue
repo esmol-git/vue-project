@@ -15,7 +15,8 @@ let sidebar = [
     { title: 'Inputs', to: '/inputs', icon: 'icon-input-field', children: [] },
     { title: 'Icons', to: '/icons', icon: 'icon-face-happy', children: [] },
     { title: 'Checkbox', to: '/checkbox', icon: 'icon-check', children: [] },
-    { title: 'Auth', to: '/about', icon: 'icon-lock', children: [{ title: 'Home', to: '/home', icon: 'icon-home-1' }] },
+    { title: 'Example', to: '/example', icon: 'icon-book', children: [] },
+    { title: 'Auth', to: '/about', icon: 'icon-capsule', children: [{ title: 'Home', to: '/home', icon: 'icon-home-1' }] },
 
 ]
 

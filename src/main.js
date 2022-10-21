@@ -8,6 +8,7 @@ import router from "./router";
 import "./assets/style/sass/main.scss";
 import "./assets/fonts/icon/style.css";
 import "vue-toast-notification/dist/theme-default.css";
+import "@/index.css";
 
 const app = createApp(App);
 
